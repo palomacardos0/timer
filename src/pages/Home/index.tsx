@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import {
   HomeContainer,
   StartCountdownButton,
-  StopCountdownButton
+  StopCountdownButton,
 } from './styles'
 import { useContext } from 'react'
 
@@ -18,7 +18,7 @@ const newCycleFormValidationSchema = zod.object({
   minutesAmount: zod
     .number()
     .min(1, 'O ciclo precisa ser de no mínimo 5 minutos ')
-    .max(60, 'O ciclo precisa ser de no máximo 60 minutos ')
+    .max(60, 'O ciclo precisa ser de no máximo 60 minutos '),
 })
 type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 
@@ -30,8 +30,8 @@ export function Home() {
     resolver: zodResolver(newCycleFormValidationSchema),
     defaultValues: {
       minutesAmount: 0,
-      task: ''
-    }
+      task: '',
+    },
   })
   const { handleSubmit, watch, reset } = newCycleForm
 
